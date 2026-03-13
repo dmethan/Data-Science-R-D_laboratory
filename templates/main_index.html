@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Vulcan Core</title>
+
+    <link rel="stylesheet" href="/static/style_home_page.css">
+    <script type="module" src="/static/home_page_js_script.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Data Science Research and Development Laboratory</h1>
+
+    <p class="description">
+        Цей сервіс дозволяє працювати з моделями машинного навчання
+        без написання коду. Ви можете завантажити CSV-файл, обрати цільову змінну,
+        натренувати модель та отримати прогноз.
+    </p>
+
+    <div class="modes">
+        <div class="mode-card">
+            <h2>Звичайний режим</h2>
+            <p>
+                Автоматичний підбір типу задачі та моделі.
+                Підійде для швидкого аналізу даних.
+            </p>
+            <button onclick="goToBasic()">Перейти</button>
+        </div>
+
+        <div class="mode-card">
+            <h2>Професійний режим</h2>
+            <p>
+                Повний контроль: вибір моделі, аналіз даних,
+                графіки метрик та прогнозування.
+            </p>
+            <button class="professional" onclick="goToProfessional()">Перейти</button>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

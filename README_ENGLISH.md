@@ -1,0 +1,376 @@
+<div style=" 
+background: linear-gradient(135deg, #1f3c88, #00b4d8); 
+color: white; 
+text-align: center; 
+padding: 40px; 
+border-radius: 12px; 
+box-shadow: 0 8px 20px rgba(0,0,0,0.25); 
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+"> 
+<h1 style=" 
+font-size: 2.8em; 
+font-weight: bold; 
+letter-spacing: 2px; 
+text-transform: uppercase; 
+margin: 0; 
+animation: fadeIn 2s ease-in-out; 
+"> 
+Data Science Research and Development Laboratory 
+</h1> 
+<p class="animated-subtitle"> 
+Innovative platform for surveillance and experiments in the field of machine science 
+</p>
+</div>
+
+<style>
+@keyframes fadeIn { 
+from { opacity: 0; transform: translateY(-20px); } 
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow { 
+0% { color: #e0f7fa; text-shadow: 0 0 5px #e0f7fa; } 
+50% { color: #ffffff; text-shadow: 0 0 20px #00e5ff; } 
+100% { color: #e0f7fa; text-shadow: 0 0 5px #e0f7fa; }
+}
+
+.animated-subtitle { 
+font-size: 1.8em; 
+margin-top: 15px; 
+font-weight: 500; 
+animation: glow 3s infinite ease-in-out;
+}
+</style>
+
+
+<p align="center"> 
+<img src="images/intro_img.png" width="auto">
+</p>
+<div style=" 
+background: linear-gradient(135deg, #0f2027, #2c5364); 
+color: white; 
+text-align: center; 
+padding: 50px; 
+border-radius: 15px; 
+box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+"> 
+<h2 style=" 
+font-size: 3em; 
+font-weight: bold; 
+margin: 0; 
+animation: fadeIn 2s ease-in-out; 
+"> 
+🚀 Data Science Lab 
+</h2> 
+<p style=" 
+font-size: 2em; 
+margin-top: 20px; 
+color: #e0f7fa; 
+animation: pulse 3s infinite; 
+"> 
+Analysis • Models • Forecast 
+</p> 
+<div style=" 
+display: flex; 
+justify-content: center; 
+gap: 30px; 
+margin-top: 30px; 
+"> 
+<div style="font-size: 1.5em; animation: slideUp 2s;"> 
+📊 Regression 
+</div> 
+<div style="font-size: 1.5em; animation: slideUp 2.5s;"> 
+🔍 Classification 
+</div> 
+<div style="font-size: 1.5em; animation: slideUp 3s;"> 
+🌀 Clustering 
+</div> 
+</div>
+</div>
+
+<style>
+@keyframes fadeIn { 
+from { opacity: 0; transform: translateY(-30px); } 
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse { 
+0% { opacity: 0.7; } 
+50% { opacity: 1; } 
+100% { opacity: 0.7; }
+}
+@keyframes slideUp { 
+from { opacity: 0; transform: translateY(40px); } 
+to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<div style=" 
+background: linear-gradient(135deg, #1f3c88, #00b4d8); 
+color: white; 
+text-align: center; 
+padding: 40px; 
+border-radius: 12px; 
+margin-bottom: 30px; 
+box-shadow: 0 8px 20px rgba(0,0,0,0.25); 
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+"> 
+<h2 style="font-size: 2.5em; font-weight: bold; margin: 0; animation: fadeIn 2s;"> 
+⚡ Secondary mode 
+</h2> 
+<p align="center"> 
+<img src="images/basic_mode_show_csv.gif" width="auto" alt="Basic mode Training GIF"> 
+</p> 
+<h3 style="font-size: 2em; margin-top: 20px;">🌀 Clustering</h3> 
+<p align="center"> 
+<img src="images/basic_mode_clustering.gif" width="auto" alt="Clustering GIF"> 
+</p>
+</div>
+
+<div style=" 
+background: linear-gradient(135deg, #283048, #859398); 
+color: white; 
+text-align: center; 
+padding: 40px; 
+border-radius: 12px; 
+margin-bottom: 30px; 
+box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+"> 
+<h2 style="font-size: 2.5em; font-weight: bold; margin: 0; animation: fadeIn 2.5s;"> 
+🎯 Professional mode 
+</h2> 
+<p align="center"> 
+<img src="images/professional/professional_mode_intro.gif" width="auto" alt="Professional mode Training GIF"> 
+</p>
+</div>
+
+<div style=" 
+background: linear-gradient(135deg, #0f2027, #2c5364); 
+color: white; 
+text-align: center; 
+padding: 40px; 
+border-radius: 12px; 
+margin-bottom: 30px; 
+box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+"> 
+<h2 style="font-size: 2.5em; font-weight: bold; margin: 0; animation: fadeIn 3s;"> 
+📊 Upgrade of models 
+</h2> 
+<p align="center"> 
+<img src="images/professional/comparing_models_page.gif" width="auto" alt="Comparing models page GIF"> 
+</p>
+</div>
+
+<div style=" 
+background: linear-gradient(135deg, #42275a, #734b6d); 
+color: white; 
+text-align: center; 
+padding: 40px; 
+border-radius: 12px; 
+margin-bottom: 30px; 
+box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+"> 
+<h2 style="font-size: 2.5em; font-weight: bold; margin: 0; animation: fadeIn 3.5s;"> 
+📝 Logs 
+</h2> 
+<p align="center"> 
+<img src="images/professional/logs_page.gif" width="auto" alt="Logs page GIF"> 
+</p>
+</div>
+
+<style>
+@keyframes fadeIn { 
+from { opacity: 0; transform: translateY(-20px); } 
+to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<div style=" 
+background: linear-gradient(135deg, #1f3c88, #00b4d8); 
+color: white; 
+text-align: center; 
+padding: 40px; 
+border-radius: 12px; 
+margin-bottom: 30px; 
+box-shadow: 0 8px 20px rgba(0,0,0,0.25); 
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+"> 
+<h2 style="font-size: 2.5em; font-weight: bold; margin: 0; animation: fadeIn 2s;"> 
+🎯 Professional mode 
+</h2> 
+<p style="font-size: 1.4em; margin-top: 10px; color: #e0f7fa; animation: pulse 3s infinite;"> 
+CSV Value → Purpose Change → Task Type 
+</p> 
+<p align="center"> 
+<img src="images/professional/intro.png" width="auto" alt="Intro professional mode"> 
+</p>
+</div>
+
+<div style=" 
+background: linear-gradient(135deg, #283048, #859398); 
+color: white; 
+text-align: center; 
+padding: 40px; 
+border-radius: 12px; 
+margin-bottom: 30px; 
+box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+"> 
+<h3 style="font-size: 2em; margin: 0; animation: fadeIn 2.5s;"> 
+⚙️ Comparing models + parameters
+</h3>
+<p align="center">
+<img src="images/professional/select_model.png" width="auto" alt="Select model">
+</p>
+</div>
+
+<div style="
+background: linear-gradient(135deg, #0f2027, #2c5364);
+color: white;
+text-align: center;
+padding: 40px;
+border-radius: 12px;
+margin-bottom: 30px;
+box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+">
+<h3 style="font-size: 2em; margin: 0; animation: fadeIn 3s;">
+📊 Full information + graphics
+</h3>
+<p align="center">
+<img src="images/professional/full_info_model.png" width="auto" alt="Full info model"> 
+</p> 
+<p align="center"> 
+<img src="images/professional/plots_load_model.png" width="auto" alt="Plots and load model"> 
+</p>
+</div>
+
+<div style=" 
+background: linear-gradient(135deg, #1f4037, #99f2c8); 
+color: white; 
+text-align: center; 
+padding: 40px; 
+border-radius: 12px; 
+margin-bottom: 30px; 
+box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+"> 
+<h3 style="font-size: 2em; margin: 0; animation: fadeIn 3.5s;"> 
+🔮 Forecast + PDF sound 
+</h3> 
+<p align="center"> 
+<img src="images/professional/pred_result_1.png" width="auto" alt="Prediction result 1"> 
+</p> 
+<p align="center"> 
+<img src="images/professional/pred_result_2.png" width="auto" alt="Prediction result 2"> 
+</p>
+</div>
+
+<div style=" 
+background: linear-gradient(135deg, #42275a, #734b6d); 
+color: white; 
+text-align: center; 
+padding: 40px; 
+border-radius: 12px; 
+margin-bottom: 30px; 
+box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+"> 
+<h3 style="font-size: 2em; margin: 0; animation: fadeIn 4s;"> 
+📝 Logs and alignment of models 
+</h3> 
+<p align="center"> 
+<img src="images/professional/logs_page.png" width="auto" alt="Logs page"> 
+</p> 
+<p align="center"> 
+<img src="images/professional/comparing_page_1.png" width="auto" alt="Comparing models 1"> 
+</p> 
+<p align="center"> 
+<img src="images/professional/comparing_page_2.png" width="auto" alt="Comparing models 2"> 
+</p>
+</div>
+
+<style>
+@keyframes fadeIn { 
+from { opacity: 0; transform: translateY(-20px); } 
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse { 
+0% { opacity: 0.7; } 
+50% { opacity: 1; } 
+100% { opacity: 0.7; }
+}
+</style>
+
+
+---
+
+<div style=" 
+background: linear-gradient(135deg, #141e30, #243b55); 
+color: white; 
+text-align: center; 
+padding: 50px; 
+border-radius: 15px; 
+box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+"> 
+<h2 style=" 
+font-size: 3em; 
+font-weight: bold; 
+margin: 0; 
+animation: fadeIn 2s ease-in-out; 
+"> 
+🎓 Platform assigned 
+</h2>
+
+<p style=" 
+font-size: 2em; 
+margin-top: 20px; 
+color: #e0f7fa; 
+animation: pulse 3s infinite; 
+"> 
+Further research • Prototypes • Analysis • Research • Demonstration
+</p>
+</div>
+
+<style>
+@keyframes fadeIn { 
+from { opacity: 0; transform: translateY(-30px); } 
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse { 
+0% { opacity: 0.7; } 
+50% { opacity: 1; } 
+100% { opacity: 0.7; }
+}
+</style>
+
+<div style="
+background: #243b55;
+color: white;
+padding: 40px;
+border-radius: 12px;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+">
+<h2 style="font-size: 2.2em; margin: 0; text-align: center;">
+🚀 Platform Launch
+</h2>
+
+<ol style="font-size: 1.2em; margin-top: 20px; line-height: 1.6;">
+<li>Clone the repository:
+<pre style="background:#1c1c1c; color:#00e5ff; padding:10px; border-radius:8px; font-size:1em;">
+git clone https://github.com/username/repository.git 
+</pre> 
+</li> 
+<li>Go to folder project: 
+<pre style="background:#1c1c1c; color:#00e5ff; padding:10px; border-radius:8px; font-size:1em;">
+cd repository 
+</pre> 
+</li> 
+<li>Start the server: 
+<pre style="background:#1c1c1c; color:#00e5ff; padding:10px; border-radius:8px; font-size:1em;">
+uvicorn main:app --reload 
+</pre> 
+</li> 
+</ol>
+</div>
+
+## License
+This project is licensed under the MIT License with attribution requirement — see the [LICENSE](./LICENSE.md) file for details.

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Порівняння моделей</title>
+  <link rel="stylesheet" href="/static/style_professional.css?v=2">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <h2>Завантаження моделей</h2>
+
+<div class="upload-row">
+  <form id="upload-form-1" action="/professional_mode/upload_model" method="post" enctype="multipart/form-data" class="upload-form">
+    <input type="file" name="file" accept=".pkl" required>
+    <button type="submit">Завантажити Модель 1</button>
+  </form>
+
+  <form id="upload-form-2" action="/professional_mode/upload_model" method="post" enctype="multipart/form-data" class="upload-form">
+    <input type="file" name="file" accept=".pkl" required>
+    <button type="submit">Завантажити Модель 2</button>
+  </form>
+
+  <form id="upload-form-3" action="/professional_mode/upload_model" method="post" enctype="multipart/form-data" class="upload-form">
+    <input type="file" name="file" accept=".pkl" required>
+    <button type="submit">Завантажити Модель 3</button>
+  </form>
+
+  <form id="upload-form-4" action="/professional_mode/upload_model" method="post" enctype="multipart/form-data" class="upload-form">
+    <input type="file" name="file" accept=".pkl" required>
+    <button type="submit">Завантажити Модель 4</button>
+  </form>
+</div>
+
+<div id="models-info"></div>
+
+<div id="image-overlay" class="overlay" onclick="closeOverlay()">
+  <span class="close-btn" onclick="closeOverlay()">&times;</span>
+  <img id="overlay-img" class="overlay-content" alt="Велике зображення" src="">
+</div>
+
+<script type="module" src="/static/compare_models_script.js?v=2"></script>
+</body>
+</html>

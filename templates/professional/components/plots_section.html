@@ -1,0 +1,15 @@
+<!-- Компонент для виводу графіків -->
+<div id="plots-section">
+    <h3>Графіки моделі</h3>
+    <div class="plots-container">
+        {% if plots %}
+            {% for plot in plots %}
+                <div class="plot-item">
+                    <img src="data:image/png;base64,{{ plot }}" alt="Plot {{ loop.index }}">
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Графіки відсутні</p>
+        {% endif %}
+    </div>
+</div>

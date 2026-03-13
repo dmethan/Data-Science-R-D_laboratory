@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Science Prediction - Professional Mode</title>
+    <link rel="stylesheet" href="/static/style_professional.css?v=2">
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<div class="container">
+
+    <h1>Ви у професійному режимі!</h1>
+
+    <p class="description">
+        Завантажте CSV-файл, оберіть цільову колонку для прогнозування,
+        і тип задачі (Регресія, класифікація, кластеризація).
+        Після навчання моделі будуть виведені графіки роботи моделі, ви зможете вводити власні дані для отримання прогнозу.
+    </p>
+
+    <button class="compare-button" onclick="window.location.href='/professional_mode/compare_models'">
+  🔍 Порівняння моделей
+</button>
+
+    <button class="btn-green" onclick="window.location.href='/professional_mode/logs_page'">
+  Записи логів
+</button>
+
+    <!-- Компонент завантаження CSV -->
+    {% include 'professional/components/upload_csv.html' %}
+
+    <!-- Компонент таблиці та вибору цільової колонки -->
+    {% if table %}
+        {% include 'professional/components/table_select.html' %}
+    {% endif %}
+
+    <!-- Компонент прогнозу на нових даних -->
+
+    <div id="input-form" style="display:none;">
+        <h3>Введіть свої дані для прогнозу:</h3>
+            <form id="predict-form" onsubmit="predict(event)">
+                <div id="input-fields">
+                    <!-- Поля будуть додані динамічно через JS -->
+                </div>
+                <button type="submit">Отримати прогноз</button>
+            </form>
+        <div id="prediction-result"></div>
+    </div>
+
+    <button id="generate-report-btn" style="display:none;" onclick="generateReport()">Сформувати звіт (PDF)</button>
+
+</div>
+
+
+<div id="image-overlay" class="overlay" onclick="closeOverlay()">
+  <span class="close-btn" onclick="closeOverlay()">&times;</span>
+  <img id="overlay-img" class="overlay-content" alt="Велике зображення">
+</div>
+
+
+<script type="module" src="/static/professional_js_script.js?v=2"></script>
+</body>
+</html>

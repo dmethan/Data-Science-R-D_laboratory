@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Science Prediction - Basic Mode</title>
+    <link rel="stylesheet" href="/static/style_basic.css?v=1">
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<div class="container">
+
+    <h1>Ви у звичайному режимі!</h1>
+
+    <p class="description">
+        Завантажте CSV-файл, оберіть цільову колонку для прогнозування,
+        і система автоматично визначить тип задачі.
+        Після навчання моделі ви зможете вводити власні дані для отримання прогнозу.
+    </p>
+
+    <!-- Компонент завантаження CSV -->
+    {% include 'basic/components/upload_csv.html' %}
+
+    <!-- Компонент таблиці та вибору цільової колонки -->
+    {% if table %}
+        {% include 'basic/components/table_select.html' %}
+    {% endif %}
+
+    <!-- Компонент прогнозу на нових даних -->
+    {% if table %}
+        {% include 'basic/components/input_predict.html' %}
+    {% endif %}
+
+</div>
+
+<script type="module" src="/static/basic_js_script.js?v=2"></script>
+</body>
+</html>
