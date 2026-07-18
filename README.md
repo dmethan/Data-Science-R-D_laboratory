@@ -1,4 +1,10 @@
 # Data Science Research and Development Laboratory
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![version](https://img.shields.io/badge/version-1.0-blue)
+![Python](https://img.shields.io/badge/python-3.13-blue.svg)
+![Data Science](https://img.shields.io/badge/Data%20Science-research-orange.svg)
+![ML](https://img.shields.io/badge/Machine%20Learning-active-green.svg)
+
 
 Інноваційна платформа для досліджень та експериментів у сфері машинного навчання
 
