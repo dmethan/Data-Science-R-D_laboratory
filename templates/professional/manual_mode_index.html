@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Science Prediction - Professional Mode</title>
+    <link rel="stylesheet" href="/static/style_professional.css?v=2">
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header-container">
+      <h1 class="page-title">Ви у ручному режимі / AutoML!</h1>
+      <p class="page-description">
+        Завантажте CSV‑файл, виконайте попередню обробку датасету, оберіть цільову ознаку та запустіть процеси прогнозування.
+        У цьому режимі ви маєте повний контроль над кроками аналізу та навчання моделей.
+      </p>
+    </div>
+
+
+    <button class="compare-button" onclick="window.location.href='/professional_mode/compare_models'">
+      🔍 Порівняння моделей
+    </button>
+
+    <button class="btn-green" onclick="window.location.href='/professional_mode/logs_page'">
+      Записи логів
+    </button>
+
+    <!-- Компонент завантаження CSV -->
+    <form id="upload-form" action="/manual_mode/upload" method="post" enctype="multipart/form-data" class="upload-form">
+      <input type="file" name="file" accept=".csv" required>
+      <button type="submit">Завантажити CSV</button>
+    </form>
+
+    <!-- Компонент таблиці та вибору цільової колонки -->
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                {% for col in columns %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in table %}
+                <tr>
+                    {% for col in columns %}
+                        <td>{{ row[col] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Секція аналізу даних -->
+  <div class="analysis-section">
+    <h2>Аналіз даних</h2>
+
+    <!-- Пропущені значення -->
+    {% if missing %}
+    <div class="collapsible-section">
+      <button class="collapsible-btn">Пропущені значення ▼</button>
+      <div class="collapsible-content">
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Колонка</th>
+                <th>Кількість пропусків</th>
+                <th>% пропусків</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in missing %}
+              <tr>
+                <td>{{ row.column }}</td>
+                <td>{{ row.missing }}</td>
+                <td>{{ row.percent }}%</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Інформація про датасет -->
+    {% if info %}
+    <div class="collapsible-section">
+      <button class="collapsible-btn">Інформація про датасет (df.info) ▼</button>
+      <div class="collapsible-content">
+        <div class="info-table-container">
+          <pre>{{ info }}</pre>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Статистика -->
+    {% if describe %}
+    <div class="collapsible-section">
+      <button class="collapsible-btn">Статистика (df.describe) ▼</button>
+      <div class="collapsible-content">
+        <div class="describe-table-container">
+          <table>
+            <thead>
+              <tr>
+                {% for key in describe[0].keys() %}
+                <th>{{ key }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in describe %}
+              <tr>
+                {% for value in row.values() %}
+                <td>{{ value }}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Автоматичні графіки -->
+    {% if plots %}
+    <div class="collapsible-section">
+      <button class="collapsible-btn">Автоматичні графіки ▼</button>
+      <div class="collapsible-content">
+        <div class="plots-container">
+          {% for col, img in plots.items() %}
+          <div class="plot-item">
+            <h4>{{ col }}</h4>
+            <img src="data:image/png;base64,{{ img }}" alt="Графік {{ col }}">
+            <a download="{{ col }}.png" href="data:image/png;base64,{{ img }}">⬇️ Завантажити PNG</a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+      <div class="plot-controls-section">
+      <!-- Кнопка згортання -->
+      <button class="collapsible-btn">Побудова додаткових графіків ▼</button>
+
+      <!-- Контент, який буде згортатися -->
+      <div class="collapsible-content">
+          <div class="plot-controls">
+              <label for="plot-column">Колонка:</label>
+              <select id="plot-column">
+                  {% for col in columns %}
+                  <option value="{{ col }}">{{ col }}</option>
+                  {% endfor %}
+              </select>
+
+              <label for="plot-type">Тип графіка:</label>
+              <select id="plot-type">
+                  <option value="histogram">Гістограма</option>
+                  <option value="boxplot">Boxplot</option>
+                  <option value="heatmap">Heatmap</option>
+              </select>
+
+              <button class="btn-blue" onclick="generatePlot()">Побудувати</button>
+          </div>
+
+          <div id="custom-plot-container" class="plots-container"></div>
+          </div>
+      </div>
+
+      <div class="collapsible-section">
+    <button class="collapsible-btn">Обробка пропусків ▼</button>
+    <div class="collapsible-content">
+      <h2>Обробка пропусків</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Назва колонки</th>
+              <th>Тип даних</th>
+              <th>Кількість пропусків</th>
+              <th>% пропусків</th>
+              <th>Метод обробки</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in missing %}
+            <tr>
+              <td>{{ row.column }}</td>
+              <td>{{ row.dtype }}</td>
+              <td>{{ row.missing }}</td>
+              <td>{{ row.percent }}%</td>
+              <td>
+                <select name="method_{{ row.column }}">
+                  <option value="">-- Оберіть метод --</option>
+                  <option value="drop">Видалення рядків</option>
+                  <option value="unknown">Unknown</option>
+                  <option value="mean">Середнє</option>
+                  <option value="median">Медіана</option>
+                  <option value="mode">Мода</option>
+                </select>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <button class="btn-green" onclick="applyMissingMethods()">Застосувати</button>
+    </div>
+  </div>
+
+  {% if encoding_table %}
+  <div class="collapsible-section">
+    <button class="collapsible-btn">Кодування та масштабування ▼</button>
+    <div class="collapsible-content">
+      <h2>Кодування та масштабування</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Назва колонки</th>
+              <th>Тип даних</th>
+              <th>Метод</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in encoding_table %}
+            <tr>
+              <td>{{ row.column }}</td>
+              <td>{{ row.dtype }}</td>
+              <td>
+                <select name="method_{{ row.column }}">
+                  <option value="">-- Оберіть метод --</option>
+                  {% for m in row.methods %}
+                  <option value="{{ m }}">{{ m }}</option>
+                  {% endfor %}
+                </select>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <button class="btn-green" onclick="applyEncodingMethods()">Застосувати</button>
+    </div>
+  </div>
+
+  {% endif %}
+
+  <div class="collapsible-section">
+    <button class="collapsible-btn">Кореляційна матриця ▼</button>
+    <div class="collapsible-content">
+      <h2>Кореляційна матриця</h2>
+
+      <!-- Повна матриця -->
+      <button class="btn-blue" onclick="generateCorrelationMatrix()">Побудувати повну матрицю</button>
+      <div id="corr-matrix-container" class="plots-container"></div>
+
+      <!-- Вибір ознак -->
+      <h3>Кореляція вибраних ознак з усіма іншими</h3>
+      <button class="btn-green" onclick="loadCorrCheckboxes()">Показати список ознак</button>
+      <div id="corr-checkboxes" class="checkbox-container"></div>
+      <div id="corr-build-btn"></div>
+
+      <!-- Результати -->
+      <div id="corr-results" style="margin-top:20px;"></div>
+    </div>
+  </div>
+
+
+  <div class="collapsible-section">
+    <button class="collapsible-btn">Вибір X та Y ▼</button>
+    <div class="collapsible-content">
+      <h2>Вибір ознак X та Y</h2>
+      <button class="btn-blue" onclick="showXYSelectors()">Обрати X та Y</button>
+
+      <div id="xy-selectors" style="display:none; margin-top:15px;">
+        <div class="xy-block">
+          <h3>Ознаки X (можна кілька)</h3>
+          <div class="checkbox-menu">
+            {% for col in columns %}
+            <label>
+              <input type="checkbox" name="x-columns" value="{{ col }}">
+              {{ col }}
+            </label>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="xy-block">
+          <h3>Ознаки Y (без дублювання X)</h3>
+          <div class="checkbox-menu">
+            {% for col in columns %}
+            <label>
+              <input type="checkbox" name="y-columns" value="{{ col }}">
+              {{ col }}
+            </label>
+            {% endfor %}
+          </div>
+        </div>
+
+        <button class="btn-green" onclick="applyXYSelection()">Застосувати</button>
+      </div>
+
+      <!-- Прев’ю двох таблиць -->
+      <div id="xy-preview" class="xy-preview-container" style="margin-top:20px; display:flex; gap:20px;">
+        <div class="xy-table-block">
+          <h3>Прев’ю X</h3>
+          <div id="x-preview" class="table-container"></div>
+        </div>
+        <div class="xy-table-block">
+          <h3>Прев’ю Y</h3>
+          <div id="y-preview" class="table-container"></div>
+        </div>
+      </div>
+
+      <div class="collapsible-section">
+    <button class="collapsible-btn">Експорт датасету ▼</button>
+    <div class="collapsible-content" style="text-align:center;">
+      <h2>Експорт обробленого датасету</h2>
+      <a class="btn-blue" href="/manual_mode/download_full_dataset">⬇️ Завантажити весь датасет (CSV)</a>
+      <a class="btn-green" href="/manual_mode/download_xy_zip">⬇️ Завантажити X та Y (ZIP)</a>
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+  <div class="collapsible-section">
+    <button class="collapsible-btn">Train/Test/Validation Split ▼</button>
+    <div class="collapsible-content">
+      <h2>Розділення на навчальну, тестову та валідаційну вибірку</h2>
+      <p style="color:#555; font-size:0.95em;">
+        ℹ️ Навчальна вибірка використовується для тренування моделі,
+        валідаційна — для налаштування гіперпараметрів та перевірки якості,
+        тестова — для фінальної оцінки моделі на нових даних.
+      </p>
+
+      <div class="split-controls">
+        <label for="test-size">Test size (0.1–0.5):</label>
+        <input type="number" id="test-size" step="0.1" min="0.1" max="0.5" value="0.2">
+
+        <label for="val-size">Validation size (0.05–0.3):</label>
+        <input type="number" id="val-size" step="0.05" min="0.05" max="0.3" value="0.1">
+
+        <label for="random-state">Random state:</label>
+        <input type="number" id="random-state" value="42">
+
+        <button class="btn-green" onclick="applyTrainTestSplit()">Застосувати</button>
+      </div>
+
+      <div id="split-shapes" style="margin-top:15px; font-weight:600; color:#333;"></div>
+
+      <div id="split-preview" class="xy-preview-container" style="margin-top:20px; display:flex; flex-wrap:wrap; gap:20px;">
+        <div class="xy-table-block">
+          <h3>X Train</h3>
+          <div id="x-train-preview"></div>
+          <a class="btn-blue" href="/manual_mode/download_split/x_train">⬇️ Завантажити CSV</a>
+        </div>
+        <div class="xy-table-block">
+          <h3>X Validation</h3>
+          <div id="x-val-preview"></div>
+          <a class="btn-blue" href="/manual_mode/download_split/x_val">⬇️ Завантажити CSV</a>
+        </div>
+        <div class="xy-table-block">
+          <h3>X Test</h3>
+          <div id="x-test-preview"></div>
+          <a class="btn-blue" href="/manual_mode/download_split/x_test">⬇️ Завантажити CSV</a>
+        </div>
+        <div class="xy-table-block">
+          <h3>Y Train</h3>
+          <div id="y-train-preview"></div>
+          <a class="btn-blue" href="/manual_mode/download_split/y_train">⬇️ Завантажити CSV</a>
+        </div>
+        <div class="xy-table-block">
+          <h3>Y Validation</h3>
+          <div id="y-val-preview"></div>
+          <a class="btn-blue" href="/manual_mode/download_split/y_val">⬇️ Завантажити CSV</a>
+        </div>
+        <div class="xy-table-block">
+          <h3>Y Test</h3>
+          <div id="y-test-preview"></div>
+          <a class="btn-blue" href="/manual_mode/download_split/y_test">⬇️ Завантажити CSV</a>
+        </div>
+      </div>
+
+      <!-- Кнопка для завантаження всіх вибірок -->
+      <div style="margin-top:20px; text-align:center;">
+        <a class="btn-green" href="/manual_mode/download_split_zip">⬇️ Завантажити всі вибірки (ZIP)</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapsible-section">
+    <button class="collapsible-btn">Історія трансформацій ▼</button>
+    <div class="collapsible-content">
+      <h2>Історія трансформацій</h2>
+      <div id="transformations-table" class="table-container"></div>
+      <button class="btn-green" onclick="refreshTransformations()">Оновити</button>
+      <a class="btn-blue" href="/manual_mode/save_transformations_log">⬇️ Зберегти у .log</a>
+      <a class="btn-green" href="/manual_mode/export_metadata_json">⬇️ Експорт у JSON</a>
+    </div>
+  </div>
+  <div class="collapsible-section">
+    <button class="collapsible-btn">Вибір типу задачі ▼</button>
+    <div class="collapsible-content" style="text-align:center;">
+      <h2>Вибір типу задачі</h2>
+      <button class="btn-green" onclick="loadTaskButtons()">Вибрати тип прогнозу</button>
+      <div id="task-buttons"></div>
+    </div>
+  </div>
+
+  <div class="collapsible-section">
+    <button class="collapsible-btn">Результати моделей ▼</button>
+    <div class="collapsible-content">
+
+      <!-- Блок для анімації завантаження -->
+      <div id="loading-animation" style="display:none; text-align:center; margin-top:20px;">
+        <div class="spinner"></div>
+        <p id="loading-text">🔄 Відбувається тренування моделей...</p>
+      </div>
+
+      <div id="regression-results" style="margin-top:20px;"></div>
+    </div>
+  </div>
+
+    <div id="classification-results" style="margin-top:20px;"></div>
+
+    <div id="clustering-results" style="margin-top:20px;"></div>
+
+    <!-- Контейнер для мульти‑регресії -->
+    <div id="multi-regression-results" style="margin-top:20px;"></div>
+
+    <div id="multi-classification-results" style="margin-top:20px;"></div>
+
+    <div id="no-target-clustering-results" style="margin-top:20px;"></div>
+
+    <div id="hybrid-prediction-results" style="margin-top:20px;"></div>
+
+    <div id="hybrid-selection" style="margin-top:20px; display:none;">
+      <h3>Змішаний прогноз</h3>
+      <p>Оберіть ознаки для регресії та класифікації:</p>
+
+      <div class="hybrid-menu">
+          <h4>Числові ознаки (регресія)</h4>
+          <div id="numeric-targets"></div>
+      </div>
+
+      <div class="hybrid-menu">
+          <h4>Категоріальні ознаки (класифікація)</h4>
+          <div id="categorical-targets"></div>
+      </div>
+
+      <button onclick="runHybridPrediction()">▶ Запустити змішаний прогноз</button>
+  </div>
+
+    <!-- Кінець секція аналізу даних -->
+    </div>
+</div>
+
+<div id="image-overlay" class="overlay" onclick="closeOverlay()">
+  <span class="close-btn" onclick="closeOverlay()">&times;</span>
+  <img id="overlay-img" class="overlay-content" alt="Велике зображення">
+</div>
+
+<script type="module" src="/static/manual_js_script.js?"></script>
+
+</body>
+</html>

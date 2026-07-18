@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Перегляд логів</title>
+  <link rel="stylesheet" href="/static/style_logs.css">
+</head>
+<body>
+  <h2>Перегляд логів</h2>
+  <div class="buttons">
+    <button onclick="loadLogs('app_info')">Бекенд INFO/WARN/ERROR</button>
+    <button onclick="loadLogs('app_debug')">Бекенд DEBUG</button>
+    <button onclick="loadLogs('js_info')">JS INFO/WARN/ERROR</button>
+    <button onclick="loadLogs('js_debug')">JS DEBUG</button>
+  </div>
+
+  <div class="controls">
+    <input type="text" id="search-input" placeholder="Пошук слова...">
+    <select id="filter-select"></select>
+  </div>
+
+  <div id="log-container"></div>
+  <div id="pagination"></div>
+
+  <script type="module" src="/static/logs_js_script.js?v=1"></script>
+</body>
+</html>

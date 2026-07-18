@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.description {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.upload-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.upload-form input[type="file"] {
+    margin-right: 10px;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+th.selected {
+    background-color: #2196F3;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.input-container {
+    margin-bottom: 10px;
+}
+
+.input-container label {
+    display: inline-block;
+    width: 150px;
+}
+
+#train-btn {
+    display: none; /* приховано за замовчуванням */
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50; /* зелений у стилі таблиці */
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#train-btn:hover {
+    background-color: #45a049; /* темніший зелений при наведенні */
+    transform: translateY(-2px); /* легкий підйом */
+}
+
+#train-btn:active {
+    background-color: #2e7031; /* ще темніший при натисканні */
+    transform: translateY(0); /* повернення на місце */
+}
+
+
+.train-clustering-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    background-color: #2196F3; /* синій колір для відмінності від зеленої таблиці */
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.train-clustering-btn:hover {
+    background-color: #1976D2; /* темніший синій при наведенні */
+    transform: translateY(-2px); /* легкий підйом при наведенні */
+}
+
+.train-clustering-btn:active {
+    background-color: #0D47A1; /* ще темніший при натисканні */
+    transform: translateY(0); /* повернення на місце */
+}

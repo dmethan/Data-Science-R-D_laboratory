@@ -1,0 +1,27 @@
+<h2 class="hint">Натисніть на назву колонки, щоб обрати цільову змінну</h2>
+<div id="task-info"></div>
+
+<div class="table-container">
+    <table>
+        <thead>
+        <tr>
+            {% for col in columns %}
+                <th onclick="selectColumn(this, '{{ dtypes[col] }}')">{{ col }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in table %}
+            <tr>
+                {% for col in columns %}
+                    <td>{{ row[col] }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<button id="train-btn" style="display:none" onclick="trainModel()">Спрогнозувати дані</button>
+<button id="train-clustering-btn" onclick="trainModelNoTarget()">Спрогнозувати без цільової змінної (кластеризація)</button>
+<div id="loading" style="display:none;">Завантаження...</div>

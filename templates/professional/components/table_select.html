@@ -1,0 +1,47 @@
+<h2 class="hint">Натисніть на назву колонки, щоб обрати цільову змінну</h2>
+<div id="task-info"></div>
+
+<!-- Блок вибору задачі -->
+<div id="task-selection" style="display:none;">
+    <h3>Оберіть тип задачі:</h3>
+    <div id="task-buttons"></div>
+</div>
+
+<!-- Блок вибору моделі -->
+<div id="model-selection" style="display:none;">
+    <h3>Оберіть модель:</h3>
+    <div id="model-buttons"></div>
+</div>
+
+<!-- Універсальна форма параметрів -->
+<div id="params-block" class="params-block" style="display:none;">
+    <h3>Параметри моделі:</h3>
+    <form id="params-form"></form>
+    <button class="btn-green" onclick="trainModel()">Навчити модель</button>
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+        <tr>
+            {% for col in columns %}
+                <th onclick="selectColumn(this, '{{ dtypes[col] }}')">{{ col }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in table %}
+            <tr>
+                {% for col in columns %}
+                    <td>{{ row[col] }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Кнопка визначення завдання -->
+<button id="determine-task-btn" class="btn-orange" onclick="determineTask()">Визначити завдання</button>
+
+<div id="loading" style="display:none;">Завантаження...</div>
