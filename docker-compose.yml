@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  fastapi-service:
+    build: .
+    container_name: data_science_research_and_development_lab
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app

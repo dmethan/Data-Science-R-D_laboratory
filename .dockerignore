@@ -1,0 +1,35 @@
+# Python артефакти
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Віртуальні оточення
+.venv/
+venv/
+ENV/
+env/
+
+# Логи та тимчасові файли
+*.log
+*.tmp
+*.swp
+*.bak
+
+# -----------------------------
+# PyCharm
+# -----------------------------
+.idea/
+*.iml
+saved_models/
+saved_basic_models/
+test_algorithms/
+logs/
+uploaded_models/
+*.pkl
+
+# -----------------------------
+# Системні файли
+# -----------------------------
+.DS_Store
+Thumbs.db

@@ -78,6 +78,50 @@
 
 ---
 
+# Інструкція запуску сервісу з Docker Hub
+
+Цей сервіс доступний як готовий контейнер на Docker Hub:  
+`dmetan/data_science_rnd_lab:latest`
+
+---
+
+## 🔹 Запуск через `docker run`
+
+1. Завантажте образ:
+
+   ```bash
+   docker pull dmetan/data_science_rnd_lab:latest
+   ```
+
+2. Запустіть контейнер:
+
+   ```bash
+   docker run -p 8000:8000 dmetan/data_science_rnd_lab:latest
+   ```
+
+3. Відкрийте у браузері:
+
+   ```text
+   http://localhost:8000
+   ```
+
+## 🔹 Запуск через `docker-compose`
+
+1. Переконайтеся, що у проєкті є файл `docker-compose.yml`.
+
+2. Запустіть сервіс:
+
+   ```bash
+   docker-compose up
+   ```
+
+3. Відкрийте у браузері:
+
+   ```text
+   http://localhost:8000
+   ```
+
+✅ Сервіс буде доступний локально за адресою [**http://localhost:8000**](http://localhost:8000) після запуску контейнера.
 
 ## 🚀 Запуск платформи
 

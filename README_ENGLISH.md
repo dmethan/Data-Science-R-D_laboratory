@@ -73,6 +73,52 @@ Research • Prototypes • Analysis • Training • Demonstration
 
 ---
 
+# Instructions for Running the Service from Docker Hub
+
+This service is available as a ready-to-use container on Docker Hub:
+`dmetan/data_science_rnd_lab:latest`
+
+---
+
+## 🔹 Running with `docker run`
+
+1. Pull the image:
+
+   ```bash
+   docker pull dmetan/data_science_rnd_lab:latest
+   ```
+
+2. Start the container:
+
+   ```bash
+   docker run -p 8000:8000 dmetan/data_science_rnd_lab:latest
+   ```
+
+3. Open the following address in your browser:
+
+   ```text
+   http://localhost:8000
+   ```
+
+## 🔹 Running with `docker-compose`
+
+1. Make sure that the project contains a `docker-compose.yml` file.
+
+2. Start the service:
+
+   ```bash
+   docker-compose up
+   ```
+
+3. Open the following address in your browser:
+
+   ```text
+   http://localhost:8000
+   ```
+
+✅ The service will be available locally at [**http://localhost:8000**](http://localhost:8000) after the container starts.
+
+
 ## 🚀 Platform Launch
 
 1. Clone the repository:
