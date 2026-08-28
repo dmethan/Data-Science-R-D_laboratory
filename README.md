@@ -5,8 +5,11 @@
 ![Data Science](https://img.shields.io/badge/Data%20Science-research-orange.svg)
 ![ML](https://img.shields.io/badge/Machine%20Learning-active-green.svg)
 
-
 Інноваційна платформа для досліджень та експериментів у сфері машинного навчання
+
+✅ Сервіс працює на хостингу Render за посиланням нижче, очікування 1хв через безкоштовний план
+
+[**https://data-science-r-d-laboratory.onrender.com**](https://data-science-r-d-laboratory.onrender.com)
 
 ![Intro](images/intro_img.png)
 

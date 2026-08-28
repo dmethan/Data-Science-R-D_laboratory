@@ -1,6 +1,15 @@
 # Data Science Research and Development Laboratory
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![version](https://img.shields.io/badge/version-1.0-blue)
+![Python](https://img.shields.io/badge/python-3.13-blue.svg)
+![Data Science](https://img.shields.io/badge/Data%20Science-research-orange.svg)
+![ML](https://img.shields.io/badge/Machine%20Learning-active-green.svg)
 
 An innovative platform for research and experiments in the field of machine learning
+
+✅ The service works on Render hosting, link below, 1 minute awaiting, because free plan hosting
+
+[**https://data-science-r-d-laboratory.onrender.com**](https://data-science-r-d-laboratory.onrender.com)
 
 ![Intro](images/intro_img.png)
 
@@ -117,7 +126,6 @@ This service is available as a ready-to-use container on Docker Hub:
    ```
 
 ✅ The service will be available locally at [**http://localhost:8000**](http://localhost:8000) after the container starts.
-
 
 ## 🚀 Platform Launch
 
